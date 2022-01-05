@@ -13,9 +13,7 @@ Filename = 'CSC15_169806023_223259735.ncs';
 %2.- Concatenate epochs of 4 secs 
 %3.- Downsample
 %4.- If all the channels work concatenate them on a 15*timepoints matrix
-%% Missing data:
-% epoch sn1: 13 channels and CSC11 doesn't work, missing data in the CSC15
-% epoch 
+
        
 %to know if there is incomplete information on the samples and identify the
 %missing data's position
@@ -55,3 +53,6 @@ downsepoch = downsample(epoch,round(samplevalue));
 %Save the position of each timestamp in order to have the same datapoint
 %time in each channel
 posdown = 1:33:length(epoch);
+
+
+
