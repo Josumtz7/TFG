@@ -1,0 +1,57 @@
+%Predefined values
+clear
+FieldSelectionFlags = [1 1 1 1 1];
+HeaderExtractionFlag = 1;
+ExtractMode = 1;
+ExtractionModeVector = 1;
+%Loading all the data
+Filename = 'CSC15_169806023_223259735.ncs';
+[Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
+%1.- See the Number of Valid samples
+    %1.1 If there is not a valid sample remove it from all the Channels
+        %*Do the task of uploading all the channels
+%2.- Concatenate epochs of 4 secs 
+%3.- Downsample
+%4.- If all the channels work concatenate them on a 15*timepoints matrix
+%% Missing data:
+% epoch sn1: 13 channels and CSC11 doesn't work, missing data in the CSC15
+% epoch 
+       
+%to know if there is incomplete information on the samples and identify the
+%missing data's position
+missing = 1;
+for i = 1:1:length(NumberOfValidSamples)
+      if NumberOfValidSamples(i) ~= 512
+         Pos_Wrsam(1,missing) = i;
+         missing = missing+1;
+      end
+end
+%to know the time stamps of each epoch, its almost the same than the
+%seconds, this one is in microseconds
+for i = 1:1:length(Timestamps)-1
+    Time(1,i) = Timestamps(i+1) - Timestamps(i);  
+end
+
+[m nepoch] = size(Samples);
+%Calculate how many epochs do we need
+Secs = m/SampleFrequencies(1,1); %All of them have the same frequency
+epseg = 0;
+contsampl = 1;
+epseg = epseg + (4/(epseg+Secs));
+lastsec = 0;
+for k = 0:1:round(epseg)-1
+    epoch(((m*k)+1):(m*(k+1)),1) = Samples((1:end),contsampl);     
+    contsampl = contsampl +1;
+    lastsec = lastsec+Secs;
+end 
+
+%Calculate the number of samples we need to downsample at 1000Hz.
+downFreq = 1000;
+samplenum = round((length(epoch)*downFreq)/SampleFrequencies(1,1));
+%Define the factor number for downsampling
+samplevalue = length(epoch)/samplenum;
+%Downsample
+downsepoch = downsample(epoch,round(samplevalue));
+%Save the position of each timestamp in order to have the same datapoint
+%time in each channel
+posdown = 1:33:length(epoch);
