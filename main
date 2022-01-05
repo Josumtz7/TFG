@@ -1,0 +1,5 @@
+clear 
+%Detection of files and names
+DetectNcs = dir('*.ncs');
+Filenames = {DetectNcs.name}';
+[ChannelNum, FinalFilenames] = loaddata(Filenames);
