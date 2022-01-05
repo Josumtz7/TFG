@@ -1,0 +1,31 @@
+clear 
+%Detection of files and names
+DetectNcs = dir('*.ncs');
+Filenames = {DetectNcs.name}';
+
+%Select the files which have a name pattern (the ones we want to analyze)
+[~,N] = cellfun(@fileparts,Filenames,'uni',0);
+Abrev = regexp(N,'CSC\d*','match');
+comp = string([Abrev{:}]');
+k = length(comp)+1;
+while length(comp) ~= 15
+    comp(k,1) = "";
+    k = k+1;
+end
+
+%See the Channels which are available for this epoch
+ChannelNum = zeros(15,1);
+for i = 1:1:length(ChannelNum)
+    StrComp = strlength(comp(i,1));
+    ChannelDet = comp(i,1);
+    for j = 1:1:length(StrComp)        
+        if StrComp == 4                
+            Channel = double(extractAfter(ChannelDet,3));
+        elseif StrComp == 5
+            Channel = double(extractAfter(ChannelDet,3));
+        else 
+            Channel = [];
+        end
+    end
+    ChannelNum(Channel,1) = Channel;
+end
