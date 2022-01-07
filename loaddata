@@ -1,14 +1,15 @@
-function [ChannelNum, FinalFilenames] = loaddata(Filenames)
+function [ChannelNum, FinalFilenames] = loaddata(FilenameCell)
     % loaddata identifies the channels with valid and detects the ones
     %without valid data.
-        % input: Filenames of each epoch channel
-        % output: Matrix with the valid and invalid numbers
+
+        %    Input : Filenames of each epoch channel
+        %    Output : Matrix with the valid and invalid numbers
 
     %Select the files which have a name pattern (the ones we want to analyze)
-    [~,Names] = cellfun(@fileparts,Filenames,'uni',0);
-    k = length(Filenames)+1;
-    while length(Filenames) ~= 15
-        Filenames{k,1} = [];
+    [~,Names] = cellfun(@fileparts,FilenameCell,'uni',0);
+    k = length(FilenameCell)+1;
+    while length(FilenameCell) ~= 15
+        FilenameCell{k,1} = [];        
         k = k+1;
     end
     Abrev = regexp(Names,'CSC\d*','match');
@@ -35,8 +36,8 @@ function [ChannelNum, FinalFilenames] = loaddata(Filenames)
         end
         ChannelNum(Channel,1) = Channel;
         if isempty(Channel) == 0
-            FinalFilenames(Channel,1) = string(Filenames(i,1));
-        else 
+            FinalFilenames(Channel,1) = string(FilenameCell(i,1));
+        elseif isempty(Channel) == 1
             FinalFilenames(Channel,1) = 'NaN';
         end
 
