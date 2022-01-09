@@ -38,9 +38,5 @@ for i = 1:1:length(FinalFilenames)
     
 end
 
-% HAY QUE GRAFICAR MEJOR PARA VER LA PERDIDAD DE VALORES 
 subplot(211); plot(epoch(:,1)); subplot(212); plot(downsepoch(:,1))
 figure(2); plot(epoch(:,1)); hold on; plot(downsepoch(:,1))
-
-% HAY QUE VALIDAR EN ALGUN MOMENTO LAS MUESTRAS!!!!! (CON LA FUNCION
-% VALIDATIONSAMPLES)
