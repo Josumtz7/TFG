@@ -19,12 +19,16 @@ for i = 1:1:length(FinalFilenames)
     centi = 0;
     while centi ~= 1 && j < 16
         CorrColumn = strcmp(FinalFilenames(i,1),DetectNcs(j).name);
-        if CorrColumn == 1
+        %Need a correction, this is due to the lack of data in the 11 and
+        %12 channel. Each epoch will have a different wrong channel so I
+        %have to identify them in each folder. 
+        if CorrColumn == 1 && i ~= 11 && i ~= 12
             centi = 1;
             Filename = convertStringsToChars(FinalFilenames(i,1)); 
             [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
             epoch(:,i) = create_epoch_table(Samples, SampleFrequencies);
-        end       
+            [downsepoch, posdown] = downsampling(epoch, SampleFrequencies);
+        end    
         j = j+1;
     end
     if i == length(FinalFilenames) && rst == 1
@@ -33,3 +37,10 @@ for i = 1:1:length(FinalFilenames)
     end
     
 end
+
+% HAY QUE GRAFICAR MEJOR PARA VER LA PERDIDAD DE VALORES 
+subplot(211); plot(epoch(:,1)); subplot(212); plot(downsepoch(:,1))
+figure(2); plot(epoch(:,1)); hold on; plot(downsepoch(:,1))
+
+% HAY QUE VALIDAR EN ALGUN MOMENTO LAS MUESTRAS!!!!! (CON LA FUNCION
+% VALIDATIONSAMPLES)
