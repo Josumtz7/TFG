@@ -34,7 +34,7 @@ for i = 1:1:length(FinalFilenames)
             [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
             epoch(:,i) = create_epoch_table(Samples, SampleFrequencies);
             validchann(1,i) = 1;         
-            [downsepoch, posdown] = downsampling(epoch, SampleFrequencies);                  
+            [downsepoch] = downsampling(epoch, SampleFrequencies); %STILL NEED DETECTION OF TIME (Previously posdown)                
         end
         j = j+1;
     end
@@ -48,3 +48,4 @@ for i = 1:1:length(FinalFilenames)
         rst = 2;
         i = 1;
     end
+end
