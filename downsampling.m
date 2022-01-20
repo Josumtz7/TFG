@@ -10,8 +10,7 @@ function [downsepoch] = downsampling(epoch, SampleFrequencies)
     %       - SampleFrequencies: Frequency of each miniepoch (32556 Hz)
     %   Output:
     %       - downsepoch: matrix with all the sample values downsampled
-    %       - posdown: save the position of the datapoints. STILL HAVE TO
-    %       TO A REVISION OF THIS
+    
     
     Fsa =  SampleFrequencies(1,1);                              % Actual Sampling Frequency
     Fsd = 1000;                                                 % Desired Sampling Frequency
