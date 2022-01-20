@@ -49,3 +49,5 @@ for i = 1:1:length(FinalFilenames)
         i = 1;
     end
 end
+groups = ones(t-1,1);
+Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
