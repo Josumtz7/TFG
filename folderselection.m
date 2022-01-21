@@ -19,5 +19,9 @@ function [folderpwd] = folderselection(pwd)
     for i = 1:1:length(epochsubfoldername)
         folderpwd(i,1) = strcat(strdir, '\',epochsubfoldername(i,1));
     end
+<<<<<<< HEAD
 
 end
+=======
+    
+>>>>>>> main
