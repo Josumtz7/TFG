@@ -14,4 +14,12 @@
        % Missing channels: 9, 11, 12
        % Giving error channels: -
        % Non valid channels: 4
+    %% epoch sn4
+       % Missing channels: 9, 11, 12
+       % Giving error channels: -
+       % Non valid channels: -
+     %% epoch sn5
+       % Missing channels: 11, 12
+       % Giving error channels: -
+       % Non valid channels: 4
 
