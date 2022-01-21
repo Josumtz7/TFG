@@ -5,7 +5,10 @@
     %% epoch sn1: 
        % Missing channels: 9 and 12
        % Giving error channels: 11
+       epochsn1 = ones(1,15);
+       epochsn1(11) = 0;
        % Non valid channels: 4
+       epochsn1(4) = 0;
     %% epoch sn2
        % Missing channels: 9, 11, 12 and 15
        % Giving error channels: -
