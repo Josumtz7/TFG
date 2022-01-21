@@ -5,9 +5,8 @@ DetectNcs = dir('*.ncs');
 myfolder = pwd;
 FilenameCell = {DetectNcs.name}';
 [ChannelNum, FinalFilenames] = loaddata(FilenameCell);
-
 for k = length(FilenameCell)+1:1:15
-DetectNcs(k).name = [];
+    DetectNcs(k).name = [];
 end
 
 %Definition of data loading characteristics with predefined values
@@ -28,7 +27,7 @@ for i = 1:1:length(FinalFilenames)
         %Need a correction, this is due to the lack of data in the 11 and
         %12 channel. Each epoch will have a different wrong channel so I
         %have to identify them in each folder. (epoch 1 && i ~= 11)
-        if CorrColumn == 1 && i ~= 11
+        if CorrColumn == 1 
             centi = 1;
             Filename = convertStringsToChars(FinalFilenames(i,1)); 
             [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
@@ -49,5 +48,6 @@ for i = 1:1:length(FinalFilenames)
         i = 1;
     end
 end
-groups = ones(t-1,1);
-Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+% for i=1:11;subplot(3,5,i);plot(ts(:,i));end
+% groups = ones(t-1,1);
+% Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
