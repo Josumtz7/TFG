@@ -1,3 +1,5 @@
+function [folderpwd] = folderselection(pwd)
+
     topLevelFolder = pwd; 
     files = dir(topLevelFolder);
     strdir = convertCharsToStrings(topLevelFolder);
@@ -17,3 +19,5 @@
     for i = 1:1:length(epochsubfoldername)
         folderpwd(i,1) = strcat(strdir, '\',epochsubfoldername(i,1));
     end
+
+end
