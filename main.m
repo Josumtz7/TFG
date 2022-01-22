@@ -1,15 +1,12 @@
 clear 
 pwd =  'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
 %Detection of files and names
-%delete 'CSC11_169806023_223259735.ncs' its the only channel which is not
-%valid
 folderpwd = folderselection(pwd);
 validchann = zeros(length(folderpwd),15);
+%delete 'CSC11_169806023_223259735.ncs' its the only channel which is not
+%valid (from epoch sn1)
 for genr = 1:length(folderpwd)
     name = folderpwd(genr,1);
-    if name == "epoch sn1"
-        a = 1;
-    end
     cd(name);
     DetectNcs = dir('*.ncs');
     myfolder = pwd;
@@ -26,8 +23,7 @@ for genr = 1:length(folderpwd)
     HeaderExtractionFlag = 1;
     ExtractMode = 1;
     ExtractionModeVector = 1;
-    
-    
+        
     rst = 1;
     t = 1;
     for i = 1:1:length(FinalFilenames)
@@ -35,9 +31,6 @@ for genr = 1:length(folderpwd)
         centi = 0;
         while centi ~= 1 && j < 16
             CorrColumn = strcmp(FinalFilenames(i,1),DetectNcs(j).name);
-            %Need a correction, this is due to the lack of data in the 11 and
-            %12 channel. Each epoch will have a different wrong channel so I
-            %have to identify them in each folder. (epoch 1 && i ~= 11)
             if CorrColumn == 1 
                 centi = 1;
                 Filename = convertStringsToChars(FinalFilenames(i,1)); 
@@ -62,4 +55,4 @@ for genr = 1:length(folderpwd)
 % groups = ones(t-1,1);
 % Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
 end
-plotting = heatmap(validchann, 'XLabel','Channels', 'YLabel', 'Epoch recordings');
+plotting = heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
