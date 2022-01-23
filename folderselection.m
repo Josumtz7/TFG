@@ -1,5 +1,6 @@
 function [folderpwd] = folderselection(pwd)
-
+    %This function allows to read all the folders
+        % Input: directory 
     topLevelFolder = pwd; 
     files = dir(topLevelFolder);
     strdir = convertCharsToStrings(topLevelFolder);
