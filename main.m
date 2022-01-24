@@ -1,5 +1,7 @@
+% This file can be used in case we only want to analyse information from one channel
+
 clear 
-pwd =  'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
+pwd = 'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
 %Detection of files and names
 folderpwd = folderselection(pwd);
 validchann = zeros(length(folderpwd),15);
