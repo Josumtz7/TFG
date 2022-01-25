@@ -1,4 +1,4 @@
-function [ChannelNum, FinalFilenames] = loaddata(FilenameCell)
+function [ChannelNum, FinalFilenames] = loaddata(FilenameCell,genr)
     % loaddata identifies the channels with valid and detects the ones
     %without valid data.
 
@@ -26,7 +26,7 @@ function [ChannelNum, FinalFilenames] = loaddata(FilenameCell)
         StrComp = strlength(comp(i,1));
         ChannelDet = comp(i,1);
         for j = 1:1:length(StrComp)        
-            if StrComp == 4                
+            if StrComp == 4  
                 Channel = double(extractAfter(ChannelDet,3));
             elseif StrComp == 5
                 Channel = double(extractAfter(ChannelDet,3));
@@ -40,6 +40,5 @@ function [ChannelNum, FinalFilenames] = loaddata(FilenameCell)
         elseif isempty(Channel) == 1
             FinalFilenames(Channel,1) = 'NaN';
         end
-
     end
 end
