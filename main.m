@@ -1,6 +1,7 @@
-% This file can be used in case we only want to analyse information from one channel
-
-clear 
+% This file can be used in case we only want to analyse characteristics of
+% all the epoch folders in one loop
+clear
+close
 pwd = 'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
 %Detection of files and names
 folderpwd = folderselection(pwd);
@@ -12,13 +13,14 @@ for genr = 1:length(folderpwd)
     cd(name);
     DetectNcs = dir('*.ncs');
     myfolder = pwd;
-    FilenameCell = {DetectNcs.name}';
-    [ChannelNum, FinalFilenames] = loaddata(FilenameCell);
-    
+    FilenameCell = {DetectNcs.name}';    
+    [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
+
     for k = length(FilenameCell)+1:1:15
     DetectNcs(k).name = [];
     end
     
+    [ChannelNum, FinalFilenames] = loaddata(FilenameCell,genr);
     %Definition of data loading characteristics with predefined values
     %(recommendation of Neuralynx)
     FieldSelectionFlags = [1 1 1 1 1];
@@ -28,6 +30,7 @@ for genr = 1:length(folderpwd)
         
     rst = 1;
     t = 1;
+    clear ts
     for i = 1:1:length(FinalFilenames)
         j = 1;
         centi = 0;
@@ -38,14 +41,14 @@ for genr = 1:length(folderpwd)
                 Filename = convertStringsToChars(FinalFilenames(i,1)); 
                 [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
                 epoch(:,i) = create_epoch_table(Samples, SampleFrequencies);
-                validchann(genr,i) = 1;         
+                validchann(genr,i) = 1;
                 [downsepoch] = downsampling(epoch, SampleFrequencies); %STILL NEED DETECTION OF TIME (Previously posdown)                
             end
             j = j+1;
         end
     
-        if validchann(1,i) == 1 %to create a matrix with only valid channels
-            ts(:,t) = downsepoch(:,i);
+        if validchann(genr,i) == 1  %to create a matrix with only valid channels
+            ts(:,t) = downsepoch(:,i);  
             t = t+1;
         end
     
@@ -53,8 +56,38 @@ for genr = 1:length(folderpwd)
             rst = 2;
             i = 1;
         end
+       
+      NonValid(1,i) = any(NumberOfValidSamples < 512);
+      if  NonValid(1,i) == 1 %to check if there are non valid channels
+            Less512(i,:) = find(NumberOfValidSamples == 0);
+            % Only in epoch sn1 and after the 4th second, non meaningful
+      end
+      
     end
+
+% -------------> in case we want to plot paste here the code of the
+% file plotting.m
+
 % groups = ones(t-1,1);
 % Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
 end
+figure
 plotting = heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+
+%% Internal functions
+
+function [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs)
+% This function deletes the channel 4 for the folder epoch which have been wrongly recorded. 
+% It has been proved visually by ploting
+    if genr < 16
+        YNCHan4 = contains(FilenameCell,'CSC4'); 
+        PosChan4 = find(YNCHan4,1); 
+        for i=PosChan4:length(FilenameCell)-1
+            FilenameCell{i} = FilenameCell{i+1};
+            
+        end
+        DetectNcs(PosChan4) = [];
+        FilenameCell = FilenameCell((1:i),:);
+    end
+
+end
