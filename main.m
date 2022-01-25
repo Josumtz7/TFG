@@ -42,7 +42,7 @@ for genr = 1:length(folderpwd)
                 [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
                 epoch(:,i) = create_epoch_table(Samples, SampleFrequencies);
                 validchann(genr,i) = 1;
-                [downsepoch] = downsampling(epoch, SampleFrequencies); %STILL NEED DETECTION OF TIME (Previously posdown)                
+                [downsepoch] = downsampling(epoch, SampleFrequencies); 
             end
             j = j+1;
         end
@@ -57,13 +57,8 @@ for genr = 1:length(folderpwd)
             i = 1;
         end
        
-      NonValid(1,i) = any(NumberOfValidSamples < 512);
-      if  NonValid(1,i) == 1 %to check if there are non valid channels
-            Less512(i,:) = find(NumberOfValidSamples == 0);
-            % Only in epoch sn1 and after the 4th second, non meaningful
-      end
-      
-    end
+    Less512 = NonValidSamples(NumberOfValidSamples,i);        
+end
 
 % -------------> in case we want to plot paste here the code of the
 % file plotting.m
@@ -71,8 +66,7 @@ for genr = 1:length(folderpwd)
 % groups = ones(t-1,1);
 % Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
 end
-figure
-plotting = heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+figure(); plotting = heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
 %% Internal functions
 
@@ -91,3 +85,14 @@ function [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNc
     end
 
 end
+
+%This function sees if there is any missing value in each channel
+function Less512 = NonValidSamples(NumberOfValidSamples,i) 
+
+      NonValid(1,i) = any(NumberOfValidSamples < 512);
+      if  NonValid(1,i) == 1 %to check if there are non valid channels
+          Less512(i,:) = find(NumberOfValidSamples == 0);
+      else
+          Less512 = 0;
+      end
+ end
