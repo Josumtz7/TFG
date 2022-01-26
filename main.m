@@ -17,10 +17,11 @@ for genr = 1:length(folderpwd)
     [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
 
     for k = length(FilenameCell)+1:1:15
-    DetectNcs(k).name = [];
+        DetectNcs(k).name = [];
     end
     
-    [ChannelNum, FinalFilenames] = loaddata(FilenameCell,genr);
+    [ChannelNum, FinalFilenames] = loaddata(FilenameCell);
+    folderNames(genr,1) = regexp(name,'epoch \d*s.*','match');
     %Definition of data loading characteristics with predefined values
     %(recommendation of Neuralynx)
     FieldSelectionFlags = [1 1 1 1 1];
@@ -58,7 +59,7 @@ for genr = 1:length(folderpwd)
         end
        
     Less512 = NonValidSamples(NumberOfValidSamples,i);        
-end
+    end
 
 % -------------> in case we want to plot paste here the code of the
 % file plotting.m
@@ -66,7 +67,7 @@ end
 % groups = ones(t-1,1);
 % Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
 end
-figure(); plotting = heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
 %% Internal functions
 
