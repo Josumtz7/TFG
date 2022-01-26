@@ -19,7 +19,22 @@ function [folderpwd] = folderselection(pwd)
     % folders we want to analyse
     for i = 1:1:length(epochsubfoldername)
         folderpwd(i,1) = strcat(strdir, '\',epochsubfoldername(i,1));
+        if contains(epochsubfoldername(i,1),'sn') == 1
+           snNum(1,i) = extractAfter(epochsubfoldername(i,1),'sn');
+        end  
+        % for sommeil is not necessary as it is ordered
     end
+    
+    %To order the folder names, so that the graphs and loading data is
+    %ordered too
+    for i = 1:length(snNum)
+        a = str2double(snNum(1,i));
+        folder(a,1) = folderpwd(i,1);
+    end
+    missing = ismissing(folder);
+    posmissing = find(missing == 1);
+    folder(posmissing) = [];
+    folderpwd(1:length(folder)) = folder;
 
 end
 
