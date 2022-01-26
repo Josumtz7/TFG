@@ -1,4 +1,4 @@
-function [ChannelNum, FinalFilenames] = loaddata(FilenameCell,genr)
+function [ChannelNum, FinalFilenames] = loaddata(FilenameCell)
     % loaddata identifies the channels with valid and detects the ones
     %without valid data.
 
