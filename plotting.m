@@ -9,7 +9,9 @@ figure(genr)
         subplot(3,4,i);
         plot(ts(:,i));
         xlim([0 M]);
-        title(strcat('Channel:',num2str(NonZerosChan(i))));        
+        title(strcat('Channel:',num2str(NonZerosChan(i))));
+        xlabel('Samples');
+        ylabel('Amplitude')
     end
  elseif N >= 13
      for i=1:N
@@ -17,5 +19,7 @@ figure(genr)
          plot(ts(:,i))
          xlim([0 M]);
          title(strcat('Channel:',num2str(NonZerosChan(i))));
+         xlabel('Samples');
+         ylabel('Amplitude')
      end
  end
