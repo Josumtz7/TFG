@@ -28,7 +28,7 @@ for k = length(FilenameCell)+1:1:15
 DetectNcs(k).name = [];
 end
 
-[ChannelNum, FinalFilenames] = loaddata(FilenameCell,0);
+[ChannelNum, FinalFilenames] = loaddata(FilenameCell);
 %Definition of data loading characteristics with predefined values
 %(recommendation of Neuralynx)
 FieldSelectionFlags = [1 1 1 1 1];
@@ -70,6 +70,10 @@ for i = 1:1:length(FinalFilenames)
         Less512(i,:) = find(NumberOfValidSamples == 0);
         % Only in epoch sn1 and after the 4th second, non meaningful
   end
-  
+  % -------------> in case we want to plot paste here the code of the
+  % file plotting.m
 end
-plot(ts,'DisplayName','ts'); xlim([0 length(downsepoch)]);
+
+% groups = ones(t-1,1);
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+% plot(ts,'DisplayName','ts'); xlim([0 length(downsepoch)]);

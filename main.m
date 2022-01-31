@@ -6,6 +6,7 @@ pwd = 'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the 
 %Detection of files and names
 folderpwd = folderselection(pwd);
 validchann = zeros(length(folderpwd),15);
+Glob_index_var_red = struct('index_var_red_tot',[]);
 %delete 'CSC11_169806023_223259735.ncs' its the only channel which is not
 %valid (from epoch sn1)
 for genr = 1:length(folderpwd)
@@ -14,7 +15,7 @@ for genr = 1:length(folderpwd)
     DetectNcs = dir('*.ncs');
     myfolder = pwd;
     FilenameCell = {DetectNcs.name}';    
-    [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
+%     [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
 
     for k = length(FilenameCell)+1:1:15
         DetectNcs(k).name = [];
@@ -63,9 +64,9 @@ for genr = 1:length(folderpwd)
 
 % -------------> in case we want to plot paste here the code of the
 % file plotting.m
-
 % groups = ones(t-1,1);
-% Otot = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+% [Otot O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+
 end
 figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
