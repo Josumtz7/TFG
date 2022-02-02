@@ -1,6 +1,7 @@
 function [folderpwd] = folderselection(pwd)
     %This function allows to read all the folders
         % Input: directory 
+        % Output: a matrix with all the names of the channel's directory ordered
     topLevelFolder = pwd; 
     files = dir(topLevelFolder);
     strdir = convertCharsToStrings(topLevelFolder);
