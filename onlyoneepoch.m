@@ -50,7 +50,7 @@ for i = 1:1:length(FinalFilenames)
             [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC(Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
             epoch(:,i) = create_epoch_table(Samples, SampleFrequencies);
             validchann(1,i) = 1;
-            [downsepoch] = downsampling(epoch, SampleFrequencies); %STILL NEED DETECTION OF TIME (Previously posdown)                
+            [downsepoch] = downsampling(epoch, SampleFrequencies);
         end
         j = j+1;
     end
@@ -70,9 +70,12 @@ for i = 1:1:length(FinalFilenames)
         Less512(i,:) = find(NumberOfValidSamples == 0);
         % Only in epoch sn1 and after the 4th second, non meaningful
   end
-  % -------------> in case we want to plot paste here the code of the
-  % file plotting.m
+
 end
+
+ % -------------> in case we want to plot paste here the code of the
+  % file plotting.m and change where it puts genr (put 1 instead)
+
 
 % groups = ones(t-1,1);
 % [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
