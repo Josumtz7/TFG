@@ -29,10 +29,19 @@ This file implements all the functions, and has some internal functions which he
 
 
 
-Knowing this, the explanations of each function or file can be found in each file of the repository.
+Knowing this, the explanations of each function or file can also be found in each file of the repository.
 
 # Currently developing
 
+Currently working to complete information that is not valid in the different channels using different strategies. This is being done in the mean_values function, to be finished by mid-February.
+
+In parallel, the relationship between different channels and their interdependencies is being explored. This has not yet been implemented in the repository code.
+
+# To do list in the future
+
+- Continue to analyze the connections between channels and get conclusions
+- Connection between different epoch folders and consequently between channels and get conclusions
+- See how the effect of the multiplets size affect to redundancy and synergy and get conclusions
 
 
 # References 
