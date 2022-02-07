@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 This repository contains the part of the code I am using for the development of my end of degree project, which aims to apply O-information metrics to understand higher-order neural interdependencies in rodents with epilepsy over an 8-month period. 
 
@@ -8,34 +8,34 @@ Each channel represents the activity of a temporal lobe (TL) brain structures re
 
 Currently I am working in the preprocessing part and working to get conclusions using HOI toolbox to retrieve high-order information multiplets from data using the **O-information** (shorthand for “information about Organizational structure, https://github.com/danielemarinazzo/HOI) [1-2]. This toolbox uses the gaussian copula estimator (https://github.com/robince/gcmi).
 
-#Work done so far
+# Work done so far
 
 Although there are a large number of recordings that have been obtained correctly, the reality is that there are also a large number that need to be deleted, pre-processed, or modified for various reasons. In addition, the company recommended down sampling to less than 1000 Hz because the sampling rate was too high (32556 Hz as mentioned). Therefore, two types of pre-processing are being carried out: for the validation of the channel files and epochs, and on the other hand to improve the quality of the data obtained for later analysis.
 
-## Loading data (loaddata.m and folderselection.m)
+### Loading data (loaddata.m and folderselection.m)
 The code is able to load all the folders of the database and read the data of each of the channels of the recordings. This function also detects the channels without valid data. 
 
-## Concatenation and calculation of necessary epochs (create_epoch_tables.m)
+### Concatenation and calculation of necessary epochs (create_epoch_tables.m)
 The code calculates how many epochs we need to downsample up to 4 seconds, which was the recommended time in the beggining. It concatenates all of them in a single column. 
 
-## Downsampling (downsampling.m)
+### Downsampling (downsampling.m)
 The frequency is downsampled after the concatenation of all the epochs, from 32556Hz to 900Hz (which was the recommended value). 
 
-## Plotting (plotting.m)
+### Plotting (plotting.m)
 In case you want to plot all the channels and have an overview of the work done you can paste this part of the code in the main code (main.m)
 
-## Implementation of all the code fuctions (main.m)
+### Implementation of all the code fuctions (main.m)
 This file implements all the functions, and has some internal functions which helps us to preprocess and omit some invalid channels. The main part of the validation of the files is developed in this file.
 
 
 
 Knowing this, the explanations of each function or file can be found in each file of the repository.
 
-#Currently developing
+# Currently developing
 
 
 
-#References 
+# References 
 
 [1]  Rosas, F. E., Mediano, P. A., Gastpar, M., & Jensen, H. J. (2019). Quantifying high-order interdependencies via multivariate extensions of the mutual information. Physical Review E, 100(3), 032305. https://journals.aps.org/pre/abstract/10.1103/PhysRevE.100.032305
 
