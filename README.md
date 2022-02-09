@@ -33,7 +33,10 @@ Knowing this, the explanations of each function or file can also be found in eac
 
 # Currently developing
 
-Currently working to complete information that is not valid in the different channels using different strategies. This is being done in the mean_values function, to be finished by mid-February.
+Currently working to complete information that is not valid in the different channels using different strategies. This is being done in the mean_values function, to be finished by mid-final-February.
+A part of using the mean values other strategies and algorithms are being tried for their optimal implementation.
+
+
 
 In parallel, the relationship between different channels and their interdependencies is being explored. This has not yet been implemented in the repository code.
 
