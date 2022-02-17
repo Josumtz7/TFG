@@ -27,6 +27,9 @@ In case you want to plot all the channels and have an overview of the work done 
 #### Implementation of all the code fuctions (main.m)
 This file implements all the functions, and has some internal functions which helps us to preprocess and omit some invalid channels. The main part of the validation of the files is developed in this file.
 
+#### Work with only one epoch (onlyoneepoch.m)
+In case we want to analyse only one epoch,  which is sometimes convenient to do test in some analysis we can use this file. It is important to be inside the epoch folder (p.e. epoch sn7), if not the code doesn't detect the files and causes errors. 
+
 #### Changing the values of the real channels (real_channel.m)
 This file will help us to detect the index values of the real channels. If not with the missing data and without making use of the aproximation and mean values (in short, without completing the missing data) we couldn't see the real interdependencies between neural channels.
 
@@ -34,12 +37,11 @@ Knowing this, the explanations of each function or file can also be found in eac
 
 # Currently developing
 
-Currently working to complete information that is not valid in the different channels using different strategies. This is being done in the mean_values function, to be finished by mid-final-February.
+Currently working to complete information that is not valid in the different channels using different strategies. This is being done in the mean_values function, to be developed by mid-final February.
 A part of using the mean values other strategies and algorithms are being tried for their optimal implementation.
 
 
-
-In parallel, the relationship between different channels and their interdependencies is being explored. This has not yet been implemented in the repository code.
+In parallel, the relationship between different channels and their interdependencies is being explored. This is now implemented in the onlyoneepoch.m file.
 
 # To do list in the future
 
