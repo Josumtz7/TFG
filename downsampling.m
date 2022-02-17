@@ -12,10 +12,10 @@ function [downsepoch] = downsampling(epoch, SampleFrequencies)
     %       - downsepoch: matrix with all the sample values downsampled
     
     
-    Fsa =  SampleFrequencies(1,1);                              % Actual Sampling Frequency
+    Fsa =  SampleFrequencies(1,1);                             % Actual Sampling Frequency
     Fsd = 900;                                                 % Desired Sampling Frequency
-    [N,D] = rat(Fsd/Fsa);                                       % Rational Fraction Approximation
-    Check = [Fsd/Fsa, N/D];                                     % Approximation Accuracy Check, the value has to be the same
+    [N,D] = rat(Fsd/Fsa);                                      % Rational Fraction Approximation
+    Check = [Fsd/Fsa, N/D];                                    % Approximation Accuracy Check, the value has to be the same
     downsepoch = resample(epoch, N, D);                        % Resampled Signal
 end
 
