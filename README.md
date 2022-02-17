@@ -10,7 +10,7 @@ Currently I am working in the preprocessing part and working to get conclusions 
 
 # Work done so far
 
-Although there are a large number of recordings that have been obtained correctly, the reality is that there are also a large number that need to be deleted, pre-processed, or modified for various reasons. In addition, the company recommended down sampling to less than 1000 Hz because the sampling rate was too high (32556 Hz as mentioned). Therefore, two types of pre-processing are being carried out: for the validation of the channel files and epochs, and on the other hand to improve the quality of the data obtained for later analysis.Knowing this, these are the functions and features of the code:
+Although there are a large number of recordings that have been obtained correctly, the reality is that there are also a large number that need to be deleted, pre-processed, or modified for various reasons. In addition, the company recommended down sampling to less than 1000 Hz because the sampling rate was too high (32556 Hz as mentioned). Therefore, two types of pre-processing are being carried out: for the validation of the channel files and epochs, and on the other hand to improve the quality of the data obtained for later analysis. Knowing this, these are the functions and features of the code:
 
 #### Loading data (loaddata.m and folderselection.m)
 The code is able to load all the folders of the database and read the data of each of the channels of the recordings. This function also detects the channels without valid data. 
