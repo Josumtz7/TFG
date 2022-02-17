@@ -27,7 +27,7 @@ In case you want to plot all the channels and have an overview of the work done 
 #### Implementation of all the code fuctions (main.m)
 This file implements all the functions, and has some internal functions which helps us to preprocess and omit some invalid channels. The main part of the validation of the files is developed in this file.
 
-### Changing the values of the real channels (real_channel.m)
+#### Changing the values of the real channels (real_channel.m)
 This file will help us to detect the index values of the real channels. If not with the missing data and without making use of the aproximation and mean values (in short, without completing the missing data) we couldn't see the real interdependencies between neural channels.
 
 Knowing this, the explanations of each function or file can also be found in each file of the repository.
