@@ -75,8 +75,44 @@ end
 
  % -------------> in case we want to plot paste here the code of the
   % file plotting.m and change where it puts genr (put 1 instead)
+heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+mean1 = zeros(length(downsepoch),15);
+mean2 = zeros(length(downsepoch),15);
+mean3 = zeros(length(downsepoch),15);
+
+for i = 1:1:length(ChannelNum)
+    if i ~= 1 && i ~= length(ChannelNum) 
+        if validchann(1,i) == 0 && validchann(1,i-1) == 1 && validchann(1,i+1) == 1
+            lateral_doub = ([downsepoch(:,i-1), downsepoch(:,i+1)]);
+            med = mean(lateral_doub,2);
+            mean1(:,i) = med;
+        elseif validchann(1,i) == 0 && validchann(1,i-1) == 0 && validchann(1,i-2) == 1 && validchann(1,i+1) == 1
+            lateral_doub = ([downsepoch(:,i-2), downsepoch(:,i+1)]);
+            med = mean(lateral_doub,2);
+            mean1(:,i) = med;
+        elseif validchann(1,i) == 0 && validchann(1,i-1) == 1 && validchann(1,i+2) == 1 && validchann(1,i+1) == 0
+            lateral_doub = ([downsepoch(:,i-1), downsepoch(:,i+2)]);
+            med = mean(lateral_doub,2);
+            mean1(:,i) = med;
+        end
+    elseif i == length(ChannelNum)
+        lateral_doub = ([downsepoch(:,1), downsepoch(:,i-1)]); 
+        med = mean(lateral_doub,2);
+        mean1(:,i) = med;  
+    end  
+    while mean1(1,i) == 0
+        mean1(:,i) = downsepoch(:,i);
+    end
+end
 
 
-% groups = ones(t-1,1);
-% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+groups = ones(t-1,1);
+maxsize = 4;
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+num_valid_chann = nonzeros(ChannelNum)';
+Otot = real_channel(maxsize, Otot, num_valid_chann); %This function changes the channel numbers to the real ones
+   
+
+
+
 % plot(ts,'DisplayName','ts'); xlim([0 length(downsepoch)]);
