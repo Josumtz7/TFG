@@ -35,6 +35,7 @@ This file will help us to detect the index values of the real channels. If not w
 
 #### Clasifying the possible groups for O info analysis (groups_classification)
 This file will be used to classify the diferent groups accordign to the needs detected. The collection of data was obtained in some groups, this can be a way of classifying, anyway they can be classified with other logics.
+
 Knowing this, the explanations of each function or file can also be found in each file of the repository.
 
 # Currently developing
