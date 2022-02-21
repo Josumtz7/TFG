@@ -59,60 +59,41 @@ for i = 1:1:length(FinalFilenames)
         ts(:,t) = downsepoch(:,i);  
         t = t+1;
     end
-
     if i == length(FinalFilenames) && rst == 1
         rst = 2;
         i = 1;
     end
-   
-  NonValid(1,i) = any(NumberOfValidSamples < 512);
-  if  NonValid(1,i) == 1 %to check if there are non valid channels
-        Less512(i,:) = find(NumberOfValidSamples == 0);
-        % Only in epoch sn1 and after the 4th second, non meaningful
-  end
+
+    NonValid(1,i) = any(NumberOfValidSamples < 512);
+
+    if  NonValid(1,i) == 1 %to check if there are non valid channels
+            Less512(i,:) = find(NumberOfValidSamples == 0);
+            % Only in epoch sn1 and after the 4th second, non meaningful
+    end
 
 end
 
+% complete downsepoch matrix until a lengtht of 15 (total channels)
+for l = size(downsepoch,2)+1:1:length(ChannelNum)
+    downsepoch(:,l) = 0;
+end
  % -------------> in case we want to plot paste here the code of the
   % file plotting.m and change where it puts genr (put 1 instead)
 heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
-mean1 = zeros(length(downsepoch),15);
-mean2 = zeros(length(downsepoch),15);
-mean3 = zeros(length(downsepoch),15);
 
-for i = 1:1:length(ChannelNum)
-    if i ~= 1 && i ~= length(ChannelNum) 
-        if validchann(1,i) == 0 && validchann(1,i-1) == 1 && validchann(1,i+1) == 1
-            lateral_doub = ([downsepoch(:,i-1), downsepoch(:,i+1)]);
-            med = mean(lateral_doub,2);
-            mean1(:,i) = med;
-        elseif validchann(1,i) == 0 && validchann(1,i-1) == 0 && validchann(1,i-2) == 1 && validchann(1,i+1) == 1
-            lateral_doub = ([downsepoch(:,i-2), downsepoch(:,i+1)]);
-            med = mean(lateral_doub,2);
-            mean1(:,i) = med;
-        elseif validchann(1,i) == 0 && validchann(1,i-1) == 1 && validchann(1,i+2) == 1 && validchann(1,i+1) == 0
-            lateral_doub = ([downsepoch(:,i-1), downsepoch(:,i+2)]);
-            med = mean(lateral_doub,2);
-            mean1(:,i) = med;
-        end
-    elseif i == length(ChannelNum)
-        lateral_doub = ([downsepoch(:,1), downsepoch(:,i-1)]); 
-        med = mean(lateral_doub,2);
-        mean1(:,i) = med;  
-    end  
-    while mean1(1,i) == 0
-        mean1(:,i) = downsepoch(:,i);
-    end
-end
-
+% This function is used to fill the missing values
+[mean1,mean2] = mean_values(downsepoch, ChannelNum, validchann); 
 
 groups = ones(t-1,1);
-maxsize = 4;
-[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
 num_valid_chann = nonzeros(ChannelNum)';
-Otot = real_channel(maxsize, Otot, num_valid_chann); %This function changes the channel numbers to the real ones
-   
 
+% This function gives the option to clasiffy all the info before doing the
+% O info analysis, uncomment the following line to implement it
 
+% groups = groups_classification(num_valid_chann,groups);
+
+% maxsize = 4;
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+% Otot = real_channel(maxsize, Otot, num_valid_chann); %This function changes the channel numbers to the real ones
 
 % plot(ts,'DisplayName','ts'); xlim([0 length(downsepoch)]);
