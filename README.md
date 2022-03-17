@@ -47,9 +47,9 @@ In parallel, the relationship between different channels and their interdependen
 
 # To do list in the future
 
-- Continue to analyze the connections between channels and get conclusions
-- Connection between different epoch folders and consequently between channels and get conclusions
-- See how the effect of the multiplets size affect to redundancy and synergy and get conclusions
+- Continue to analyze the connections between channels and get conclusions (this is already done, now documenting)
+- Connection between different epoch folders and consequently between channels and get conclusions (this is been done)
+- See how the effect of the multiplets size affect to redundancy and synergy and get conclusions (this has been done to detect the different groups)
 
 # References 
 
