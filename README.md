@@ -40,8 +40,7 @@ Knowing this, the explanations of each function or file can also be found in eac
 
 # Currently developing
 
-Currently working to complete information that is not valid in the different channels using different strategies. This is being done in the mean_values function, to be developed by mid-final February.
-A part of using the mean values other strategies and algorithms are being tried for their optimal implementation.
+Currently working to complete information that is not valid in the different channels using different strategies. A part of using the mean values other strategies and algorithms are being tried for their optimal implementation.
 
 
 In parallel, the relationship between different channels and their interdependencies is being explored. This is now implemented in the onlyoneepoch.m file.
@@ -51,7 +50,6 @@ In parallel, the relationship between different channels and their interdependen
 - Continue to analyze the connections between channels and get conclusions
 - Connection between different epoch folders and consequently between channels and get conclusions
 - See how the effect of the multiplets size affect to redundancy and synergy and get conclusions
-
 
 # References 
 
