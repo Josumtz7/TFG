@@ -18,7 +18,6 @@ YNCHan4 = contains(FilenameCell,'CSC4');
 PosChan4 = find(YNCHan4,1); 
 for i=PosChan4:length(FilenameCell)-1
     FilenameCell{i} = FilenameCell{i+1};
-    
 end
 DetectNcs(PosChan4) = [];
 FilenameCell = FilenameCell((1:i),:);
@@ -70,8 +69,8 @@ for i = 1:1:length(FinalFilenames)
             Less512(i,:) = find(NumberOfValidSamples == 0);
             % Only in epoch sn1 and after the 4th second, non meaningful
     end
-
 end
+
 
 % complete downsepoch matrix until a lengtht of 15 (total channels)
 for l = size(downsepoch,2)+1:1:length(ChannelNum)
@@ -79,6 +78,30 @@ for l = size(downsepoch,2)+1:1:length(ChannelNum)
 end
  % -------------> in case we want to plot paste here the code of the
   % file plotting.m and change where it puts genr (put 1 instead)
+
+ figure(1)
+ NonZerosChan = nonzeros(ChannelNum);
+ [M,N] = size(ts);
+ if N < 13
+    for i=1:N
+        subplot(3,4,i);
+        plot(ts(:,i));
+        xlim([0 M]);
+        title(strcat('Channel:',num2str(NonZerosChan(i))));
+        xlabel('Samples');
+        ylabel('Amplitude')
+    end
+ elseif N >= 13
+     for i=1:N
+         subplot(3,5,i)
+         plot(ts(:,i))
+         xlim([0 M]);
+         title(strcat('Channel:',num2str(NonZerosChan(i))));
+         xlabel('Samples');
+         ylabel('Amplitude')
+     end
+ end
+figure()
 heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
 % This function is used to fill the missing values
@@ -88,12 +111,13 @@ groups = ones(t-1,1);
 num_valid_chann = nonzeros(ChannelNum)';
 
 % This function gives the option to clasiffy all the info before doing the
-% O info analysis, uncomment the following line to implement it
-
+% O info analysis, uncomment the following line to implement it:
 % groups = groups_classification(num_valid_chann,groups);
 
-% maxsize = 4;
-% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
-% Otot = real_channel(maxsize, Otot, num_valid_chann); %This function changes the channel numbers to the real ones
+maxsize = 4;
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+
+%This function changes the channel numbers to the real ones:
+Otot = real_channel(maxsize, Otot, num_valid_chann); 
 
 % plot(ts,'DisplayName','ts'); xlim([0 length(downsepoch)]);

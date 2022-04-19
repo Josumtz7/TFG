@@ -1,4 +1,4 @@
-% By pasting this files content in the line defined in main.m we will be
+% By pasting this files content in the line defined in main.m/onlyoneepoch we will be
 % able to plot all the channels of all the epoch folders with the name of
 % each channel. This will be usefull as some channels are invalid.
 figure(genr)

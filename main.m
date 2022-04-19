@@ -16,8 +16,8 @@ for genr = 1:length(folderpwd)
     FilenameCell = {DetectNcs.name}';    
     [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
 
-    for k = length(FilenameCell)+1:1:15
-        DetectNcs(k).name = [];
+    for iEmpty = length(FilenameCell)+1:1:15
+        DetectNcs(iEmpty).name = [];
     end
     
     [ChannelNum, FinalFilenames] = loaddata(FilenameCell);
