@@ -10,16 +10,17 @@ Currently I am working in the preprocessing part and working to get conclusions 
 
 # Preparing to use the code and how to use it:
 
-1. First download this folder with all the epoch folders of Neuralynx **except the folder called "epoch sn13"**: https://www.dropbox.com/sh/0kpgp9la6by8m9p/AABM2vldJEclnunSIl8IzvKHa?dl=0
-2. Download the MATLAB Support for MinGW-w64 C/C++ Compiler: To speed up the complication process, in case you do not have it downloaded, see https://es.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-compiler
-3. Download MATLAB Import/Export MEX Files from https://neuralynx.com/software/category/matlab-netcom-utilities to import and export Neuralynx files to and from MATLAB variables with MATLAB MEX files.
+1. First download [this folder] (https://www.dropbox.com/sh/0kpgp9la6by8m9p/AABM2vldJEclnunSIl8IzvKHa?dl=0) with all the epoch folders of Neuralynx **except the folder called "epoch sn13"**: 
+2. Download the [MATLAB Support for MinGW-w64 C/C++ Compiler](https://es.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-compiler): To speed up the complication process, in case you do not have it downloaded, see 
+3. Download [MATLAB Import/Export MEX Files](https://neuralynx.com/software/category/matlab-netcom-utilities) to import and export Neuralynx files to and from MATLAB variables with MATLAB MEX files.
 4. Add all the epoch folder to the path (select all of them, right click and add to path)!! Important, if not it will not work.
 5. I have developed to main codes to have a global view of the dataset or just of one epoch folder:
-      5.1. In case you want to work with only one epoch folder:
+      In case you want to work with only *one epoch folder*:
            - Use onlyoneepoch.m function
            - Go inside the epoch folder you want
            - Run the code
-      5.2. In case you want to have a general view of the dataset
+      In case you want to have a *general view of the dataset*
+           - Use main.m function
            - Go to the general folder
            - Run the code 
 
