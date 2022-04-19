@@ -15,14 +15,14 @@ Currently I am working in the preprocessing part and working to get conclusions 
 3. Download [MATLAB Import/Export MEX Files](https://neuralynx.com/software/category/matlab-netcom-utilities) to import and export Neuralynx files to and from MATLAB variables with MATLAB MEX files.
 4. Add all the epoch folder to the path (select all of them, right click and add to path)!! Important, if not it will not work.
 5. I have developed to main codes to have a global view of the dataset or just of one epoch folder:<br/>
-      In case you want to work with only *one epoch folder*:<br/>
-           - Use onlyoneepoch.m function<br/>
-           - Go inside the epoch folder you want<br/>
-           - Run the code<br/>
-      In case you want to have a *general view of the dataset*<br/>
-           - Use main.m function<br/>
-           - Go to the general folder<br/>
-           - Run the code<br/>
+   \tIn case you want to work with only *one epoch folder*:<br/>
+           \t\t- Use onlyoneepoch.m function<br/>
+           \t\t- Go inside the epoch folder you want<br/>
+           \t\t- Run the code<br/>
+      \tIn case you want to have a *general view of the dataset*<br/>
+           \t\t- Use main.m function<br/>
+           \t\t - Go to the general folder<br/>
+           \t\t- Run the code<br/>
 
 # Work done so far
 
