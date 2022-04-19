@@ -13,7 +13,7 @@ Currently I am working in the preprocessing part and working to get conclusions 
 1. First download [this folder](https://www.dropbox.com/sh/0kpgp9la6by8m9p/AABM2vldJEclnunSIl8IzvKHa?dl=0) with all the epoch folders of Neuralynx **except the folder called "epoch sn13"**: 
 2. Download the [MATLAB Support for MinGW-w64 C/C++ Compiler](https://es.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-compiler) to speed up the complication process, in case you do not have it downloaded.
 3. Download [MATLAB Import/Export MEX Files](https://neuralynx.com/software/category/matlab-netcom-utilities) to import and export Neuralynx files to and from MATLAB variables with MATLAB MEX files.
-4. Delete "CSC10_169806023_223259735.ncs" from the epoch sn1 folder
+4. Delete "CSC11_169806023_223259735.ncs" from the epoch sn1 folder
 5. Add all the epoch folder to the path (select all of them, right click and add to path)!! Important, if not it will not work.
 6. I have developed to main codes to have a global view of the dataset or just of one epoch folder:<br/><br/>
 7.1. In case you want to work with only *one epoch folder*:<br/>
