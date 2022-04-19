@@ -10,7 +10,7 @@ Currently I am working in the preprocessing part and working to get conclusions 
 
 # Preparing to use the code and how to use it:
 
-1. First download [this folder] (https://www.dropbox.com/sh/0kpgp9la6by8m9p/AABM2vldJEclnunSIl8IzvKHa?dl=0) with all the epoch folders of Neuralynx **except the folder called "epoch sn13"**: 
+1. First download [this folder](https://www.dropbox.com/sh/0kpgp9la6by8m9p/AABM2vldJEclnunSIl8IzvKHa?dl=0) with all the epoch folders of Neuralynx **except the folder called "epoch sn13"**: 
 2. Download the [MATLAB Support for MinGW-w64 C/C++ Compiler](https://es.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-compiler): To speed up the complication process, in case you do not have it downloaded, see 
 3. Download [MATLAB Import/Export MEX Files](https://neuralynx.com/software/category/matlab-netcom-utilities) to import and export Neuralynx files to and from MATLAB variables with MATLAB MEX files.
 4. Add all the epoch folder to the path (select all of them, right click and add to path)!! Important, if not it will not work.
