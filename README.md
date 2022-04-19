@@ -14,15 +14,15 @@ Currently I am working in the preprocessing part and working to get conclusions 
 2. Download the [MATLAB Support for MinGW-w64 C/C++ Compiler](https://es.mathworks.com/matlabcentral/fileexchange/52848-matlab-support-for-mingw-w64-c-c-compiler): To speed up the complication process, in case you do not have it downloaded, see 
 3. Download [MATLAB Import/Export MEX Files](https://neuralynx.com/software/category/matlab-netcom-utilities) to import and export Neuralynx files to and from MATLAB variables with MATLAB MEX files.
 4. Add all the epoch folder to the path (select all of them, right click and add to path)!! Important, if not it will not work.
-5. I have developed to main codes to have a global view of the dataset or just of one epoch folder:
-      In case you want to work with only *one epoch folder*:
-           - Use onlyoneepoch.m function
-           - Go inside the epoch folder you want
-           - Run the code
-      In case you want to have a *general view of the dataset*
-           - Use main.m function
-           - Go to the general folder
-           - Run the code 
+5. I have developed to main codes to have a global view of the dataset or just of one epoch folder:<br/>
+      In case you want to work with only *one epoch folder*:<br/>
+           - Use onlyoneepoch.m function<br/>
+           - Go inside the epoch folder you want<br/>
+           - Run the code<br/>
+      In case you want to have a *general view of the dataset*<br/>
+           - Use main.m function<br/>
+           - Go to the general folder<br/>
+           - Run the code<br/>
 
 # Work done so far
 
