@@ -79,28 +79,6 @@ end
  % -------------> in case we want to plot paste here the code of the
   % file plotting.m and change where it puts genr (put 1 instead)
 
- figure(1)
- NonZerosChan = nonzeros(ChannelNum);
- [M,N] = size(ts);
- if N < 13
-    for i=1:N
-        subplot(3,4,i);
-        plot(ts(:,i));
-        xlim([0 M]);
-        title(strcat('Channel:',num2str(NonZerosChan(i))));
-        xlabel('Samples');
-        ylabel('Amplitude')
-    end
- elseif N >= 13
-     for i=1:N
-         subplot(3,5,i)
-         plot(ts(:,i))
-         xlim([0 M]);
-         title(strcat('Channel:',num2str(NonZerosChan(i))));
-         xlabel('Samples');
-         ylabel('Amplitude')
-     end
- end
 figure()
 heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
@@ -109,7 +87,7 @@ heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
 groups = ones(t-1,1);
 num_valid_chann = nonzeros(ChannelNum)';
-
+agroupation = groups_classification(num_valid_chann,ts);
 % This function gives the option to clasiffy all the info before doing the
 % O info analysis, uncomment the following line to implement it:
 % groups = groups_classification(num_valid_chann,groups);
