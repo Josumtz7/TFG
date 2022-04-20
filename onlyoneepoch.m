@@ -82,9 +82,6 @@ end
 figure()
 heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
-% This function is used to fill the missing values
-[mean1,mean2] = mean_values(downsepoch, ChannelNum, validchann); 
-
 groups = ones(t-1,1);
 num_valid_chann = nonzeros(ChannelNum)';
 agroupation = groups_classification(num_valid_chann,ts);
