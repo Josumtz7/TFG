@@ -36,7 +36,7 @@ The code is able to load all the folders of the database and read the data of ea
 The code calculates how many epochs we need to downsample up to 4 seconds, which was the recommended time in the beggining. It concatenates all of them in a single column. 
 
 #### Downsampling (downsampling.m)
-The frequency is downsampled after the concatenation of all the epochs, from 32556Hz to 900Hz (which was the recommended value). 
+The frequency is downsampled after the concatenation of all the epochs, from 32556Hz to 200Hz (which was the recommended value). 
 
 #### Plotting (plotting.m)
 In case you want to plot all the channels and have an overview of the work done you can paste this part of the code in the main code (main.m)
