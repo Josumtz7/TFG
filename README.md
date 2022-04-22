@@ -47,17 +47,23 @@ This file implements all the functions, and has some internal functions which he
 #### Work with only one epoch (onlyoneepoch.m)
 In case we want to analyse only one epoch,  which is sometimes convenient to do test in some analysis we can use this file. It is important to be inside the epoch folder (p.e. epoch sn7), if not the code doesn't detect the files and causes errors. 
 
+#### Work with only one file (onlyfile.m)
+% This script could be a file to start and understand the basics of the code. It takes the information of only one channel recording. Change the name of the file you want.
+
 #### Changing the values of the real channels (real_channel.m)
 This file will help us to detect the index values of the real channels. If not with the missing data and without making use of the aproximation and mean values (in short, without completing the missing data) we couldn't see the real interdependencies between neural channels.
 
 #### Clasifying the possible groups for O info analysis (aggroupation.m)
 This function is used to classify the diferent groups according to the needs detected. In this last version different regions of the rats brain have been separated according to the location.
 
+#### Final aggoupation depending of the parts of the brain (pca_regions.m)
+This function is used to reduce each aggroupation to the first principal component of each group by Principal Component Analysis. The final matrix is 
+
 Knowing this, the explanations of each function or file can also be found in each file of the repository.
 
 # Currently developing
 
-Currently working to complete information that is not valid in the different channels using different strategies (by this week it will be ended), finally PCA will be used. A part of using the mean values other strategies and algorithms are being tried for their optimal implementation.
+Currently working to complete information that is not valid in the different channels using different strategies, finally PCA will be used. A part of using the mean values other strategies and algorithms are being tried for their optimal implementation.
 
 In parallel, the relationship between different channels and their interdependencies is being explored. This is now implemented in the onlyoneepoch.m file.
 
