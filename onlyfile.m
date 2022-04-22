@@ -1,5 +1,6 @@
 % This could be a file to start and understand the basics of the code. It
-% takes the information of only one channel recording
+% takes the information of only one channel recording. Change the name of
+% the file you want.
 clear
 
 FieldSelectionFlags = [1 1 1 1 1];
