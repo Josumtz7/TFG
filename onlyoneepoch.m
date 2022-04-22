@@ -82,17 +82,17 @@ end
 figure()
 heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
-groups = ones(t-1,1);
 num_valid_chann = nonzeros(ChannelNum)';
-agroupation = groups_classification(num_valid_chann,ts);
-% This function gives the option to clasiffy all the info before doing the
-% O info analysis, uncomment the following line to implement it:
-% groups = groups_classification(num_valid_chann,groups);
+aggroupation = groups_classification(num_valid_chann,ts);
 
-maxsize = 4;
-[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+%Applying PCA to reduce the size of the final matrix to 4 groups
+[regions , score_cort, score_hippo, explained_cort, explained_hippo] = pca_regions(aggroupation);
+
+% maxsize = 4;
+% groups = ones(t-1,1);
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
 
 %This function changes the channel numbers to the real ones:
-Otot = real_channel(maxsize, Otot, num_valid_chann); 
+% Otot = real_channel(maxsize, Otot, num_valid_chann); 
 
-% plot(ts,'DisplayName','ts'); xlim([0 length(downsepoch)]);
+plot(regions,'DisplayName','regions'); xlim([0 length(downsepoch)]);
