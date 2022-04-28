@@ -2,7 +2,7 @@ function aggroupation = groups_classification(validgroups, mean_aggroupation)
 
 % This function is used to classify definetly the four diferent groups according to
 % the needs detected. After having done the average between the first classification 
-% groups in the first_aggroupation.m % In this last version different regions of the rats brain 
+% groups in the first_aggroupation.m % In this last version 4 different regions of the rats brain 
 % have been separated according to the location.
     % Cortex group: 
         % Group 1: CSC1 – CSC2: cortex frontal (reference) / cortex frontal (reference)
