@@ -48,13 +48,17 @@ This file implements all the functions, and has some internal functions which he
 In case we want to analyse only one epoch,  which is sometimes convenient to do test in some analysis we can use this file. It is important to be inside the epoch folder (p.e. epoch sn7), if not the code doesn't detect the files and causes errors. 
 
 #### Work with only one file (onlyfile.m)
-% This script could be a file to start and understand the basics of the code. It takes the information of only one channel recording. Change the name of the file you want.
+This script could be a file to start and understand the basics of the code. It takes the information of only one channel recording. Change the name of the file you want.
 
 #### Changing the values of the real channels (real_channel.m)
 This file will help us to detect the index values of the real channels. If not with the missing data and without making use of the aproximation and mean values (in short, without completing the missing data) we couldn't see the real interdependencies between neural channels.
 
-#### Clasifying the possible groups for O info analysis (groups_classification.m)
-This function is used to classify the diferent groups according to the needs detected. In this last version different regions of the rats brain have been separated according to the location.
+#### First aggroupation doing the average between different regions (first_aggroupation.m)
+ This function does the first aggroupation to lose the less possible interactions. This is why average between channels of the same region of the brain has been done. 
+
+#### Reducing the aggroupation to 4 regions of the brain (groups_classification.m)
+This function is used to classify definetly the four diferent groups according to the needs detected. After having done the average between the first classification 
+groups in the first_aggroupation.m In this last version 4 different regions of the rats brain have been separated according to the location.
 
 #### Final aggoupation depending of the parts of the brain (pca_regions.m)
 This function is used to reduce each aggroupation to the first principal component of each group by Principal Component Analysis. The final matrix is 
