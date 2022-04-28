@@ -1,6 +1,7 @@
 %In case you want to work with only one epoch folder use this file
-clear 
-close
+clear
+clc
+close all
 pwd =  'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
 %Detection of files and names
 folderpwd = folderselection(pwd);
@@ -71,7 +72,6 @@ for i = 1:1:length(FinalFilenames)
     end
 end
 
-
 % complete downsepoch matrix until a lengtht of 15 (total channels)
 for l = size(downsepoch,2)+1:1:length(ChannelNum)
     downsepoch(:,l) = 0;
@@ -83,10 +83,11 @@ figure()
 heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
 num_valid_chann = nonzeros(ChannelNum)';
-aggroupation = groups_classification(num_valid_chann,ts);
+[mean_aggroupation, validgroups] = first_aggroupation(num_valid_chann, downsepoch);
+second_aggroupation = groups_classification(validgroups,mean_aggroupation);
 
 %Applying PCA to reduce the size of the final matrix to 4 groups
-[regions , score_cort, score_hippo, explained_cort, explained_hippo] = pca_regions(aggroupation);
+[regions , explained_cort, explained_hippo] = pca_regions(second_aggroupation);
 
 % maxsize = 4;
 % groups = ones(t-1,1);
@@ -94,5 +95,5 @@ aggroupation = groups_classification(num_valid_chann,ts);
 
 %This function changes the channel numbers to the real ones:
 % Otot = real_channel(maxsize, Otot, num_valid_chann); 
-
+figure
 plot(regions,'DisplayName','regions'); xlim([0 length(downsepoch)]);
