@@ -1,4 +1,4 @@
-function [regions , score_cort, score_hippo, explained_cort, explained_hippo] = pca_regions(aggroupation)
+function [regions , explained_cort, explained_hippo] = pca_regions(aggroupation)
 
 %This function is used to reduce each aggroupation to the first 
 %principal component of each group by Principal Component Analysis
@@ -19,7 +19,7 @@ function [regions , score_cort, score_hippo, explained_cort, explained_hippo] = 
     hippocampus = aggroupation.hippocampus;
      
  %  Analysis of the cortex
-    [coeff_cort,score_cort,~,~,explained_cort] = pca(cortex); % "coeff" are the principal component vectors.
+    [coeff_cort,~,~,~,explained_cort] = pca(cortex); % "coeff" are the principal component vectors.
     % Calculate eigenvalues and eigenvectors of the covariance matrix
     covarianceMatrixCortex = cov(cortex);
     % Multiplying the original data by the principal component vectors to get the
@@ -32,7 +32,7 @@ function [regions , score_cort, score_hippo, explained_cort, explained_hippo] = 
 
 
  %  Analysis of the hippocampus
-    [coeff_hippo,score_hippo,~,~,explained_hippo] = pca(hippocampus);
+    [coeff_hippo,~,~,~,explained_hippo] = pca(hippocampus);
     covarianceMatrixHippocampus = cov(hippocampus);
     dataInPrincipalComponentSpaceHippocampus = hippocampus*coeff_hippo;
     corrcoef(dataInPrincipalComponentSpaceHippocampus); 
