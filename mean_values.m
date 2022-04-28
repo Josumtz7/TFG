@@ -11,6 +11,17 @@ function [mean1,mean2] = mean_values(downsepoch, ChannelNum, validchann)
     %         - mean1: mean with adjoining channels
     %         - mean2: mean taking into account the groups
 
+    % - CSC1 – CSC2: cortex frontal (reference) / cortex frontal (reference)
+    % -	CSC3 – 4: median septum (MS) / MS
+    % -	CSC5: thalamus
+    % -	CSC6: cingular cortex
+    % -	CSC7: supramammillary nucleus (SuM)
+    % -	CSC8 – CSC 11: Hippocampus (Dentate Gyrus (DG), CA1, CA1, CA3) 
+    % -	CSC12: Subiculum
+    % -	CSC13: Ventral hippocampus (vHPC)
+    % -	CSC14- CSC15: Entorhinal cortex (EC) / EC or Perirhinal cortex (PRC) 
+
+
     mean1 = zeros(length(downsepoch),15);
     mean2 = zeros(length(downsepoch),15);
     
@@ -60,7 +71,7 @@ function [mean1,mean2] = mean_values(downsepoch, ChannelNum, validchann)
         end
     end    
 end
-% Plotting all the channels to se if there have been well defined
+% Plotting all the channels to see if there have been well defined
 
 % ts = mean2;
 % figure()
