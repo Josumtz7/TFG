@@ -6,6 +6,7 @@ pwd = 'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the 
 %Detection of files and names
 folderpwd = folderselection(pwd);
 validchann = zeros(length(folderpwd),15);
+i_centi = 0; count_valid_record = 0;
 %delete 'CSC11_169806023_223259735.ncs' its the only channel which is not
 %valid (from epoch sn1)
 for genr = 1:length(folderpwd)
@@ -47,21 +48,30 @@ for genr = 1:length(folderpwd)
             end
             j = j+1;
         end
-    
+
+        if i_centi == 0
+            chann_concat = zeros(length(downsepoch)*length(folderpwd),size(validchann,2));
+            i_centi = 1;
+        end
+
         if validchann(genr,i) == 1  %to create a matrix with only valid channels
             ts(:,t) = downsepoch(:,i);  
             t = t+1;
             numvalidchan(genr,i) = i;
+            min_concat = 1 + ((genr-1)*length(downsepoch)); 
+            max_concat = min_concat + length(downsepoch) - 1;
+            chann_concat((min_concat:max_concat),i) = downsepoch(:,i); 
+            
         end
-    
+        
         if i == length(FinalFilenames) && rst == 1
             rst = 2;
             i = 1;
         end
-       
+        
     Less512 = NonValidSamples(NumberOfValidSamples,i);        
     end
-
+   
 % -------------> in case we want to plot paste here the code of the
 % file plotting.m
 
@@ -70,8 +80,18 @@ for genr = 1:length(folderpwd)
 % Otot3(:,genr) = O_tot_value(3).multiplet_val;
 % Otot4(:,genr) = O_tot_value(4).multiplet_val;
 end
-figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
+valid_record = numvalidchan';
+num_valid_record = sum(validchann)';
+folder_dim = 19;
+
+concat_channels = struct('cn1', chann_concat(:,1), 'cn2', chann_concat(:,2), 'cn3', chann_concat(:,3), 'cn4', chann_concat(:,4), 'cn5', chann_concat(:,5), 'cn6', chann_concat(:,6), 'cn7', chann_concat(:,7), 'cn8', chann_concat(:,8), 'cn9', chann_concat(:,9), 'cn10', chann_concat(:,10), 'cn11', chann_concat(:,11), 'cn12', chann_concat(:,12), 'cn13', chann_concat(:,13),'cn14', chann_concat(:,14), 'cn15', chann_concat(:,15));
+channel_concat = same_num_channel(downsepoch,chann_concat, folder_dim);
+
+
+
+
+figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 %% Internal functions
 
 function [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs)
@@ -99,4 +119,6 @@ function Less512 = NonValidSamples(NumberOfValidSamples,i)
       else
           Less512 = 0;
       end
- end
+end
+
+
