@@ -1,7 +1,7 @@
 function channel_concat = same_num_channel(downsepoch,chann_concat, folder_dim,num_valid_record)
     % This function creates a struct matrix with each channel for the whole
     % database. It will be used to have conclusions of each channels in
-    % different behaviors
+    % different behaviors and situations of the pathology
 
         %Input: 
             % -dowsnepoch: matrix with the downsampled epoch, used only for
