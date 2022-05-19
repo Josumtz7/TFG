@@ -83,10 +83,12 @@ end
 
 valid_record = numvalidchan';
 num_valid_record = sum(validchann)';
-folder_dim = 19;
+folder_dim = length(folderpwd);
 
+%Concatenation of each channel in a single column
 concat_channels = struct('cn1', chann_concat(:,1), 'cn2', chann_concat(:,2), 'cn3', chann_concat(:,3), 'cn4', chann_concat(:,4), 'cn5', chann_concat(:,5), 'cn6', chann_concat(:,6), 'cn7', chann_concat(:,7), 'cn8', chann_concat(:,8), 'cn9', chann_concat(:,9), 'cn10', chann_concat(:,10), 'cn11', chann_concat(:,11), 'cn12', chann_concat(:,12), 'cn13', chann_concat(:,13),'cn14', chann_concat(:,14), 'cn15', chann_concat(:,15));
-channel_concat = same_num_channel(downsepoch,chann_concat, folder_dim);
+%Separation of each channel for all the dataset
+channel_concat = same_num_channel(downsepoch,chann_concat, folder_dim, num_valid_record);
 
 
 
