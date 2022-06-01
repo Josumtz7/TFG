@@ -2,7 +2,7 @@
 % all the epoch folders in one loop
 clear
 close
-pwd = 'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
+pwd = 'D:\Erasmus\TFG\Neuralynx\Classe A_TLE_Before'; %Write here the place you have downloaded the epoch folders
 %Detection of files and names
 folderpwd = folderselection(pwd);
 validchann = zeros(length(folderpwd),15);
@@ -88,7 +88,9 @@ folder_dim = length(folderpwd);
 concat_channels = struct('cn1', chann_concat(:,1), 'cn2', chann_concat(:,2), 'cn3', chann_concat(:,3), 'cn4', chann_concat(:,4), 'cn5', chann_concat(:,5), 'cn6', chann_concat(:,6), 'cn7', chann_concat(:,7), 'cn8', chann_concat(:,8), 'cn9', chann_concat(:,9), 'cn10', chann_concat(:,10), 'cn11', chann_concat(:,11), 'cn12', chann_concat(:,12), 'cn13', chann_concat(:,13),'cn14', chann_concat(:,14), 'cn15', chann_concat(:,15));
 % Separation of each channel for all the dataset
 channel_concat = same_num_channel(downsepoch,chann_concat, folder_dim, num_valid_record);
-figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+
+figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');title('Before seizure');
+
 %%
 % To read each folder
 sniffing = regexp(folderNames,'epoch sn\d*','match');

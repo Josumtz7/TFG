@@ -91,7 +91,7 @@ for genr = 1:length(folderpwd)
 
 end
 
-figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings'); title('4 days after seizure');
 
 
 %This function sees if there is any missing value in each channel

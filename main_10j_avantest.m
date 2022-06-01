@@ -91,7 +91,7 @@ for genr = 1:length(folderpwd)
 
 end
 
-figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings'); title('10 days after seizure, 1h before test');
 
 %This function sees if there is any missing value in each channel
 function Less512 = NonValidSamples(NumberOfValidSamples,i) 
