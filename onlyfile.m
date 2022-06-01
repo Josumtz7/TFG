@@ -4,7 +4,7 @@
 clear
 
 FieldSelectionFlags = [1 1 1 1 1];
-Filename = 'CSC1_169806023_223259735.ncs'; % to be updated for each 'CSCx.ncs' file
+Filename =  'CSC4_3374042643_3374800522.ncs'; % to be updated for each 'CSCx.ncs' file
 HeaderExtractionFlag = 1;
 ExtractMode = 1;
 ExtractionModeVector = 1;
