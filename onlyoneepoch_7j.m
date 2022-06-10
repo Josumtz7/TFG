@@ -7,7 +7,7 @@ close all
 pwd = 'D:\Erasmus\TFG\Neuralynx\Classe C_TLE 7j\1h avt test'; %Write here the place you have downloaded the epoch folders
 
 %Detection of files and names
-folderpwd = folderselection_4j(pwd);
+folderpwd = folderselection_7j(pwd);
 validchann = zeros(1,15);
 DetectNcs = dir('*.ncs');
 myfolder = pwd;
@@ -81,7 +81,7 @@ second_aggroupation = groups_classification(validgroups,mean_aggroupation);
 [regions , explained_cort, explained_hippo] = pca_regions(second_aggroupation);
 
 %To compute O-information toolbox 
-% maxsize = 4;
-% groups = ones(t-1,1);
-% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+maxsize = 4;
+groups = ones(length(ts),1);
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
 

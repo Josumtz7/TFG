@@ -3,7 +3,7 @@
 clear
 clc
 close all
-pwd =  'D:\Erasmus\TFG\Neuralynx'; %Write here the place you have downloaded the epoch folders
+pwd =  'D:\Erasmus\TFG\Neuralynx\Classe A_TLE_Before'; %Write here the place you have downloaded the epoch folders
 %Detection of files and names
 folderpwd = folderselection(pwd);
 validchann = zeros(1,15);
@@ -91,7 +91,7 @@ second_aggroupation = groups_classification(validgroups,mean_aggroupation);
 [regions , explained_cort, explained_hippo] = pca_regions(second_aggroupation);
 
 maxsize = 4;
-groups = ones(t-1,1);
+groups = ones(length(ts),1);
 [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
 
 %This function changes the channel numbers to the real ones:

@@ -3,7 +3,7 @@
 clear
 clc
 close all
-pwd = 'D:\Erasmus\TFG\Neuralynx\Classe D_TLE 4j\1h avant test'; %Write here the place you have downloaded the epoch folders
+pwd = 'D:\Erasmus\TFG\Neuralynx\Classe B_TLE 4j\1h avt test'; %Write here the place you have downloaded the epoch folders
 
 %Detection of files and names
 folderpwd = folderselection_4j(pwd);
@@ -67,19 +67,21 @@ for l = size(downsepoch,2)+1:1:length(ChannelNum)
     downsepoch(:,l) = 0;
 end
 
-% figure()
-% heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
+figure()
+heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');
 
 num_valid_chann = nonzeros(ChannelNum)';
 [mean_aggroupation, validgroups] = first_aggroupation(num_valid_chann, downsepoch);
-
-%In case you want to do the second aggrupation (only the 4 regions):
 second_aggroupation = groups_classification(validgroups,mean_aggroupation);
 
 %Applying PCA to reduce the size of the final matrix to 4 groups
 [regions , explained_cort, explained_hippo] = pca_regions(second_aggroupation);
 
-%To compute O-information toolbox 
-% maxsize = 4;
-% groups = ones(t-1,1);
-% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+maxsize = 4;
+groups = ones(length(ts),1);
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+
+%This function changes the channel numbers to the real ones:
+Otot = real_channel(maxsize, Otot, num_valid_chann); 
+figure
+plot(regions,'DisplayName','regions'); xlim([0 length(downsepoch)]);

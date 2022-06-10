@@ -6,7 +6,11 @@ pwd = 'D:\Erasmus\TFG\Neuralynx\Classe A_TLE_Before'; %Write here the place you 
 %Detection of files and names
 folderpwd = folderselection(pwd);
 validchann = zeros(length(folderpwd),15);
-i_centi = 0; count_valid_record = 0;
+i_centi = 0; count_valid_record = 0; 
+
+%initialize how many folders we have from each behaviour
+nSniff_folder = 15;
+nSleep_folder = 4; i_sleep = 1;
 %delete 'CSC11_169806023_223259735.ncs' its the only channel which is not
 %valid (from epoch sn1)
 for genr = 1:length(folderpwd)
@@ -70,15 +74,26 @@ for genr = 1:length(folderpwd)
         
     Less512 = NonValidSamples(NumberOfValidSamples,i);        
     end
+    num_valid_chann = nonzeros(ChannelNum)';
+    if genr <= nSniff_folder
+        min_sniff = 1 + ((genr-1)*length(downsepoch)); 
+        max_sniff = min_sniff + length(downsepoch) - 1;
+        [mean_sniffing([min_sniff:max_sniff],:), valid_sn_groups(genr,:)] = first_aggroupation(num_valid_chann, downsepoch);
+    else
+        min_sleep = 1 + ((i_sleep-1)*length(downsepoch)); 
+        max_sleep = min_sleep + length(downsepoch) - 1;
+        [mean_sleeping([min_sleep:max_sleep],:), valid_sl_groups(genr,:)] = first_aggroupation(num_valid_chann, downsepoch);
+        i_sleep = i_sleep +1;
+    end
    
 % -------------> in case we want to plot paste here the code of the
 % file plotting.m
 
-% groups = ones(t-1,1); 
-% [Otot O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
-% Otot3(:,genr) = O_tot_value(3).multiplet_val;
-% Otot4(:,genr) = O_tot_value(4).multiplet_val;
 end
+% groups = ones(length(ts),1); 
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+
+%%
 
 valid_record = numvalidchan';
 num_valid_record = sum(validchann)';
@@ -90,18 +105,6 @@ concat_channels = struct('cn1', chann_concat(:,1), 'cn2', chann_concat(:,2), 'cn
 channel_concat = same_num_channel(downsepoch,chann_concat, folder_dim, num_valid_record);
 
 figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings');title('Before seizure');
-
-%%
-% To read each folder
-sniffing = regexp(folderNames,'epoch sn\d*','match');
-sn_val = ~cellfun(@isempty,sniffing); %to know which folders are from sniffing
-sum_folders(1,1) = sum(sn_val);
-sn_pos = find(sn_val==1); %to know the position of the folders
-sommeil = regexp(folderNames,'epoch sommeil\d*','match');
-som_val = ~cellfun(@isempty,sommeil); %to know which folders are from sommeil
-sum_folders(2,1) = sum(som_val);
-som_pos = find(som_val==1);  %to know the position of the folders
-
 
 
 %% Internal functions

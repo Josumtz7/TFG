@@ -1,5 +1,5 @@
-%In case you want to work with only one epoch folder of the 4 days after 
-%seizure
+%In case you want to work with only one epoch folder of the 10 days after 
+%seizure, 1h before 
 clear
 clc
 close all

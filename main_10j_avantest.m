@@ -6,6 +6,10 @@ folderpwd = folderselection_10j_av(pwd);
 validchann = zeros(length(folderpwd),15);
 i_centi = 0; count_valid_record = 0;
 
+%initialize how many folders we have from each behaviour
+nSniff_folder = 4;
+nRest_folder = 6; i_rest = 1;
+
 for genr = 1:length(folderpwd)
     name = folderpwd(genr,1);
     cd(name);
@@ -66,28 +70,21 @@ for genr = 1:length(folderpwd)
         
         Less512 = NonValidSamples(NumberOfValidSamples,i);   
     end
-    figure(genr)
-    NonZerosChan = nonzeros(ChannelNum);
-    [M,N] = size(ts);
-     if N < 13
-        for i=1:N
-            subplot(3,4,i);
-            plot(ts(:,i));
-            xlim([0 M]);
-            title(strcat('Channel:',num2str(NonZerosChan(i))));
-            xlabel('Samples');
-            ylabel('Amplitude')
-        end
-     elseif N >= 13
-         for i=1:N
-             subplot(3,5,i)
-             plot(ts(:,i))
-             xlim([0 M]);
-             title(strcat('Channel:',num2str(NonZerosChan(i))));
-             xlabel('Samples');
-             ylabel('Amplitude')
-         end
-     end
+    
+    % In this part we concatenate each channel for each behavior 
+    num_valid_chann = nonzeros(ChannelNum)';
+    if genr <= nSniff_folder
+        min_sniff = 1 + ((genr-1)*length(downsepoch)); 
+        max_sniff = min_sniff + length(downsepoch) - 1;
+        [mean_sniffing([min_sniff:max_sniff],:), valid_sn_groups(genr,:)] = first_aggroupation(num_valid_chann, downsepoch);
+    else
+        min_rest = 1 + ((i_rest-1)*length(downsepoch)); 
+        max_rest = min_rest + length(downsepoch) - 1;
+        [mean_rest([min_rest:max_rest],:), valid_sl_groups(genr,:)] = first_aggroupation(num_valid_chann, downsepoch);
+        i_rest = i_rest +1;
+    end
+    
+    %Plotting all channels for validation here, code in plotting.m 
 
 end
 

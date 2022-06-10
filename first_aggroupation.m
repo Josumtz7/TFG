@@ -14,7 +14,7 @@ function [mean_aggroupation, validgroups] = first_aggroupation(num_valid_chann, 
     % Suprammamillary nucleus
         % CSC7: supramammillary nucleus (SuM)
     % Dorsal hippocampus
-        % CSC8 – CSC 11: Hippocampus (Dentate Gyrus (DG), CA1, CA1, CA3) 
+        % CSC8 – CSC 11: Dorsal hippocampus (Dentate Gyrus (DG), CA1, CA1, CA3) 
     % Subiculum
         % -	CSC12: Subiculum
     % Ventral hippocampus
