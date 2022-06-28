@@ -4,7 +4,7 @@ pwd = 'D:\Erasmus\TFG\Neuralynx\Classe C_TLE 7j\1h avt test';
 
 folderpwd = folderselection_7j(pwd);
 validchann = zeros(length(folderpwd),15);
-i_centi = 0; count_valid_record = 0;
+i_centi = 0; 
 
 %initialize how many folders we have from each behaviour
 nSniff_folder = 6;
@@ -32,7 +32,7 @@ for genr = 1:length(folderpwd)
     ExtractionModeVector = 1;
         
     rst = 1;
-    t = 1;
+    t= 1;
     clear ts
     for i = 1:1:length(FinalFilenames)
         j = 1;
@@ -93,6 +93,11 @@ for genr = 1:length(folderpwd)
     %Plotting all channels for validation here, code in plotting.m 
 
 end
+
+groups = ones(length(mean_rest),1); 
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_rest,4,20,1,myfolder,groups);
+syn_resting_before = Otot(3).index_var_syn; save('after7j_resting_syn','syn_resting_before');
+red_resting_before = Otot(3).index_var_red; save('after7j_resting_red','red_resting_before');
 
 figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings'); title('7 days after seizure');
 

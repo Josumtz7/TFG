@@ -95,7 +95,22 @@ for genr = 1:length(folderpwd)
 
 end
 
+%To compute the O information in the different behaviors
+groups = ones(length(mean_rest),1); 
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_rest,4,20,1,myfolder,groups);
+syn_resting_before = Otot(3).index_var_syn; save('after10j_apres_resting_syn','syn_resting_before');
+red_resting_before = Otot(3).index_var_red; save('after10j_apres_resting_red','red_resting_before');
+clear Otot
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_sleeping,4,20,1,myfolder,groups);
+syn_sleeping_before = Otot(3).index_var_syn; save('after10j_apres_sleeping_syn','syn_sleeping_before');
+red_sleeping_before = Otot(3).index_var_red; save('after10j_apres_sleeping_red','red_sleeping_before');
+clear Otot
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_sniffing,4,20,1,myfolder,groups);
+syn_sniffing_before = Otot(3).index_var_syn; save('after10j_apres_sniffing_syn','syn_sniffing_before');
+red_sniffing_before = Otot(3).index_var_red; save('after10j_apres_sniffing_red','red_sniffing_before');
 figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings'); title('7 days after seizure');
+
+
 
 
 %This function sees if there is any missing value in each channel

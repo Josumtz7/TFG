@@ -89,6 +89,14 @@ for genr = 1:length(folderpwd)
 end
 
 figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings'); title('10 days after seizure, 1h before test');
+groups = ones(length(mean_rest),1); 
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_rest,4,20,1,myfolder,groups);
+syn_resting = Otot(3).index_var_syn; save('after10j_avant_resting_syn','syn_resting');
+red_resting = Otot(3).index_var_red; save('after10j_avant_resting_red','red_resting');
+clear Otot
+[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_sniffing,4,20,1,myfolder,groups);
+syn_sniffing = Otot(3).index_var_syn; save('after10j_avant_sniffing_syn','syn_sniffing');
+red_sniffing = Otot(3).index_var_red; save('after10j_avant_sniffing_red','red_sniffing');
 
 %This function sees if there is any missing value in each channel
 function Less512 = NonValidSamples(NumberOfValidSamples,i) 

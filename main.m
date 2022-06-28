@@ -90,8 +90,9 @@ for genr = 1:length(folderpwd)
 % file plotting.m
 
 end
-% groups = ones(length(ts),1); 
-% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,4,20,1,myfolder,groups);
+
+% groups = ones(length(mean_sniffing),1); 
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_sniffing,4,20,1,myfolder,groups);
 
 %%
 

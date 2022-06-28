@@ -1,5 +1,5 @@
 function folderpwd = folderselection_7j(pwd)
-    %This function allows to read all the folders in 7 days afer injection
+    %This function allows to read all the folders in 7 days after injection
     %recordings, the data has been taken 1 hour after the test.
         % Input: directory 
         % Output: a matrix with all the names of the channel's directory ordered

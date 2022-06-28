@@ -96,8 +96,15 @@ for genr = 1:length(folderpwd)
    
 end
 
-groups = ones(size(mean_rest,2),1); 
-[Otot, O_val_size_tot] = hoi_exhaustive_loop_zerolag_fdr(mean_rest,4,20,1,myfolder,groups);
+% To compute the O information for each behaviour:
+
+% groups = ones(length(mean_rest),1); 
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_rest,4,20,1,myfolder,groups);
+% syn_resting_before = Otot(3).index_var_syn; save('syn_resting_before', 'syn_resting_before');
+% red_resting_before = Otot(3).index_var_red; save('red_resting_before', 'red_resting_before');
+
+
+
 
 % maxsize=length(O_val_size_tot);
 % nbest_tot=[20 50 100 300 500];

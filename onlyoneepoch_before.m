@@ -1,5 +1,5 @@
-%In case you want to work with only one epoch folder of the 7 days after 
-%seizure
+%In case you want to work with only one epoch folder of the recording
+%before seizure
 
 clear
 clc

@@ -86,6 +86,8 @@ for genr = 1:length(folderpwd)
     %Plotting all channels for validation here, code in plotting.m 
 end
 
+% Compute here O information (see computing_Oinfo.m)
+
 figure(); heatmap(validchann, 'XLabel','Channel number', 'YLabel', 'Epoch recordings'); title('4 days after seizure');
 
 
