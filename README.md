@@ -61,7 +61,7 @@ This function is used to classify definetly the four diferent groups according t
 groups in the first_aggroupation.m In this last version 4 different regions of the rats brain have been separated according to the location.
 
 #### Final aggoupation depending of the parts of the brain (pca_regions.m)
-This function is used to reduce each aggroupation to the first principal component of each group by Principal Component Analysis. The final matrix is 
+This function is used to reduce each aggroupation to the first principal component of each group by Principal Component Analysis. The final matrix is composed by the data of final 4 regions selected
 
 Knowing this, the explanations of each function or file can also be found in each file of the repository.
 
