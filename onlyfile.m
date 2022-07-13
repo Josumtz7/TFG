@@ -4,7 +4,7 @@
 clear
 
 FieldSelectionFlags = [1 1 1 1 1];
-Filename =  'CSC4_3374042643_3374800522.ncs'; % to be updated for each 'CSCx.ncs' file
+Filename =  'CSC1_292528228_388049659.ncs'; % to be updated for each 'CSCx.ncs' file
 HeaderExtractionFlag = 1;
 ExtractMode = 1;
 ExtractionModeVector = 1;
@@ -12,3 +12,4 @@ myfolder = pwd;
 [Timestamps, ChannelNumbers, SampleFrequencies, NumberOfValidSamples, Samples, Header] = Nlx2MatCSC( Filename, FieldSelectionFlags, HeaderExtractionFlag, ExtractMode, ExtractionModeVector);
 epoch(:,1) = create_epoch_table(Samples, SampleFrequencies);
 downsepoch = downsampling(epoch, SampleFrequencies); 
+

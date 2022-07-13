@@ -90,11 +90,25 @@ second_aggroupation = groups_classification(validgroups,mean_aggroupation);
 %Applying PCA to reduce the size of the final matrix to 4 groups
 [regions , explained_cort, explained_hippo] = pca_regions(second_aggroupation);
 
-maxsize = 4;
-groups = ones(length(ts),1);
-[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+%To select the most meaningful recording to do the PCA
+a = [explained_hippo(1,1),explained_cort(1,1)];
+%The selection has been done with the criteria of the average of each
+%explained value
+b = mean(a); 
+ 
+for i = 1:size(regions,2) 
+    title('4 regions');
+    xlabel('Samples');
+    ylabel('Amplitude (mV)')
+    plot(regions(:,i)); 
+    hold on; 
+
+end
+% maxsize = 4;
+% groups = ones(length(mean_aggroupation),1);
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_aggroupation,maxsize,20,1,myfolder,groups);
 
 %This function changes the channel numbers to the real ones:
-Otot = real_channel(maxsize, Otot, num_valid_chann); 
-figure
-plot(regions,'DisplayName','regions'); xlim([0 length(downsepoch)]);
+% Otot = real_channel(maxsize, Otot, num_valid_chann); 
+% figure
+% plot(regions,'DisplayName','regions'); xlim([0 length(downsepoch)]);

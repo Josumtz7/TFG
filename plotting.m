@@ -11,7 +11,7 @@ figure(genr)
         xlim([0 M]);
         title(strcat('Channel:',num2str(NonZerosChan(i))));
         xlabel('Samples');
-        ylabel('Amplitude')
+        ylabel('Amplitude (microvolts)')
     end
  elseif N >= 13
      for i=1:N
@@ -20,6 +20,6 @@ figure(genr)
          xlim([0 M]);
          title(strcat('Channel:',num2str(NonZerosChan(i))));
          xlabel('Samples');
-         ylabel('Amplitude')
+         ylabel('Amplitude (microvolts)')
      end
  end

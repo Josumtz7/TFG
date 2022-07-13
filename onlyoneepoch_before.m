@@ -79,9 +79,13 @@ second_aggroupation = groups_classification(validgroups,mean_aggroupation);
 
 %Applying PCA to reduce the size of the final matrix to 4 groups
 [regions , explained_cort, explained_hippo] = pca_regions(second_aggroupation);
+for i = 1:size(regions,2) 
+    plot(regions(:,i)); 
+    hold on; 
+end
 
 %To compute O-information toolbox 
-maxsize = 4;
-groups = ones(length(ts),1);
-[Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(ts,maxsize,20,1,myfolder,groups);
+% maxsize = 4;
+% groups = ones(length(mean_aggroupation),1);
+% [Otot, O_tot_value] = hoi_exhaustive_loop_zerolag_fdr(mean_aggroupation,maxsize,20,1,myfolder,groups);
 

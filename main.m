@@ -19,7 +19,7 @@ for genr = 1:length(folderpwd)
     DetectNcs = dir('*.ncs');
     myfolder = pwd;
     FilenameCell = {DetectNcs.name}';    
-    [FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
+    %[FilenameCell, DetectNcs] = delete4channel(genr, FilenameCell, DetectNcs);
 
     for iEmpty = length(FilenameCell)+1:1:15
         DetectNcs(iEmpty).name = [];
